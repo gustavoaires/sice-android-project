@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SiCE</string>
+    <string name="email">Email:</string>
+    <string name="password">Password:</string>
+    <string name="entrar">Entrar</string>
+    <string name="email_password_incorrect">Email or password incorrect</string>
+    <string name="begin">Begin</string>
+    <string name="end">End</string>
+    <string name="title_activity_sub_events">SubEventsActivity</string>
+    <string name="generate_code">Generate Code</string>
+    <string name="type">extensao.ufc.br.sice</string>
+    <string name="label">SiCE</string>
+</resources>
