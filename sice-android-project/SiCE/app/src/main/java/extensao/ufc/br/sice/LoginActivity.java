@@ -1,10 +1,8 @@
 package extensao.ufc.br.sice;
 
+import android.accounts.AccountManager;
 import android.content.Intent;
-import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,11 +15,15 @@ import extensao.ufc.br.network.Answer;
 import extensao.ufc.br.providers.MessagesProvider;
 import extensao.ufc.br.providers.UserProvider;
 
+/**
+ * Created by alan on 11/22/15.
+ */
 public class LoginActivity extends RequestActivity {
 
     private static final int SHOW_EVENTS = 1;
     EditText loginEditText;
     EditText passwordEditText;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,11 @@ public class LoginActivity extends RequestActivity {
     public void testUserAlreadySaved(){
         User user = UserProvider.getUser(this);
         if(user != null){
-            doLogin(user);
+            if(user.getToken().getExpiresIn() > 0) {
+                showEvents();
+            }else{
+                doLogin(user);
+            }
         }
     }
 
@@ -47,7 +53,7 @@ public class LoginActivity extends RequestActivity {
         this.passwordEditText = (EditText) findViewById(R.id.activity_login_password);
     }
 
-    public void loginClick(View view){
+    public void loginClick(View view) {
         String email = loginEditText.getText().toString();
         String password = passwordEditText.getText().toString();
 
@@ -55,7 +61,7 @@ public class LoginActivity extends RequestActivity {
         doLogin(user);
     }
 
-    public void doLogin(final User user){
+    public void doLogin(final User user) {
         doRequest(new RequestSender() {
                       @Override
                       public Object run() {
@@ -82,8 +88,7 @@ public class LoginActivity extends RequestActivity {
                                 User user = gson.fromJson(answer.getObject().toString(), User.class);
                                 UserProvider.save(user, LoginActivity.this);
 
-                                Intent intent = new Intent(LoginActivity.this, EventsActivity.class);
-                                startActivityForResult(intent, SHOW_EVENTS);
+                                showEvents();
                             }
 
                             @Override
@@ -99,12 +104,17 @@ public class LoginActivity extends RequestActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == SHOW_EVENTS){
-            if(data != null && data.getBooleanExtra("logout", false)){
+        if (requestCode == SHOW_EVENTS) {
+            if (data != null && data.getBooleanExtra("logout", false)) {
 
-            }else{
+            } else {
                 finish();
             }
         }
+    }
+
+    public void showEvents(){
+        Intent intent = new Intent(LoginActivity.this, EventsActivity.class);
+        startActivityForResult(intent, SHOW_EVENTS);
     }
 }

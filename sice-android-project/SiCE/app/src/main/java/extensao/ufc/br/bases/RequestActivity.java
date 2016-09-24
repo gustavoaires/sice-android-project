@@ -21,7 +21,7 @@ import extensao.ufc.br.sice.R;
 /**
  * Created by alan on 11/22/15.
  */
-public abstract class RequestActivity extends AppCompatActivity{
+public abstract class RequestActivity extends AppCompatActivity {
 
     protected NetworkController networkController;
     protected RelativeLayout containerView;
@@ -45,20 +45,20 @@ public abstract class RequestActivity extends AppCompatActivity{
         loadVariables();
     }
 
-    public void loadVariables(){
+    public void loadVariables() {
         this.mHandler = new Handler();
         this.networkController = new NetworkController(this);
         this.gson = new Gson();
     }
 
-    public void loadComponents(){
+    public void loadComponents() {
         this.containerView = (RelativeLayout) findViewById(R.id.request_layout_container_view);
         this.loadingView = (RelativeLayout) findViewById(R.id.request_layout_progress_container);
     }
 
-    public void doRequest(final RequestSender sender, final RequestReceiver receiver){
+    public void doRequest(final RequestSender sender, final RequestReceiver receiver) {
         startLoading();
-        mThread = new Thread(){
+        mThread = new Thread() {
             @Override
             public void run() {
                 final Object result = sender.run();
@@ -95,7 +95,5 @@ public abstract class RequestActivity extends AppCompatActivity{
     public NetworkController getNetworkController(){
         return networkController;
     }
-
-
 
 }

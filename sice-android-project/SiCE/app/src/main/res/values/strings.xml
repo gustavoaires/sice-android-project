@@ -8,4 +8,6 @@
     <string name="end">End</string>
     <string name="title_activity_sub_events">SubEventsActivity</string>
     <string name="generate_code">Generate Code</string>
+    <string name="type">extensao.ufc.br.sice</string>
+    <string name="label">SiCE</string>
 </resources>

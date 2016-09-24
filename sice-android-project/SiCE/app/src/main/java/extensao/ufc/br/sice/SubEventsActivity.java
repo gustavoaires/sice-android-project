@@ -82,7 +82,6 @@ public class SubEventsActivity extends RequestActivity {
 
                                     subEventId = id;
                                         scanQRCode();
-
                                     }
                                 });
                             }

@@ -1,7 +1,6 @@
 package extensao.ufc.br.providers;
 
 import android.app.Activity;
-import android.content.Context;
 
 import com.devspark.appmsg.AppMsg;
 

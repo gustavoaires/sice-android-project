@@ -30,7 +30,6 @@ public abstract class AnswerProcessor {
                 case INTERNAL_ERROR:
                     onInternalError(answer);
                     break;
-
             }
         }
     }

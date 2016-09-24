@@ -1,5 +1,7 @@
 package extensao.ufc.br.model;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 /**
  * Created by alan on 11/22/15.
  */
@@ -11,8 +13,9 @@ public class User {
     private String email;
     private String password;
     private Levels level;
+    private OAuth2AccessToken token;
 
-    public User(){
+    public User() {
 
     }
 
@@ -52,4 +55,8 @@ public class User {
     public void setLevel(Levels level) {
         this.level = level;
     }
+
+    public OAuth2AccessToken getToken() { return token; }
+
+    public void setToken(OAuth2AccessToken token) { this.token = token; }
 }
